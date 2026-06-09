@@ -1,3 +1,13 @@
+/* --------------------------------------------------------------------------
+Disciplina  : Lógica de Programação, turma IB, 2026S1
+Nome        : Rafaela Vitória da Costa
+Linguagem   : C
+Problema    : https://judge.beecrowd.com/pt/problems/view/1030
+Data        : 09/06/2026
+Objetivo    : 
+Aprendizado : 
+-------------------------------------------------------------------------- */
+
 #include <stdio.h>
 
 int sobrevivente(int n, int k){
