@@ -10,80 +10,63 @@ Aprendizado : Aplicação de matrizes, estrutura set, verificação dos elemntos
 
 #include <stdio.h>
 
-int sudoku[9][9];
-
-int verificaLinha(int x){
-    int numeros[10];
-
-    for(int i = 0; i < 10; ++i){
-        numeros[i] = 0;
-    }
-
-    for(int i = 0; i < 9; ++i){
-        if(numeros[sudoku[x][i]])   return 0;
-        numeros[sudoku[x][i]] += 1;
-    }
-
-    return 1;
-}
-
-int verificaColuna(int x){
-    int numeros[10];
-
-    for(int i = 0; i < 10; ++i){
-        numeros[i] = 0;
-    }
-
-    for(int i = 0; i < 9; ++i){
-        if(numeros[sudoku[i][x]])   return 0;
-        numeros[sudoku[i][x]] += 1;
-    }
-
-    return 1;
-}
-
-int verificaQuadrado(int x){
-    int numeros[10];
-    int linha = 3*(x/3), coluna = 3*(x%3);
-
-    for(int i = 0; i < 10; ++i){
-        numeros[i] = 0;
-    }
-
-    for(int i = 0; i < 3; ++i){
-        for(int j = 0; j < 3; ++j){
-            if(numeros[sudoku[linha + i][coluna + j]])  return 0;
-            numeros[sudoku[linha + i][coluna + j]] += 1;
-        }
-    }
-
-    return 1;
-}
-
-int main(){
+int main() {
     int n;
-    char* resposta;
+    if (scanf("%d", &n) != 1) return 0;
 
-    scanf("%d", &n);
+    for (int instancia = 1; instancia <= n; instancia++) {
+        int sudoku[9][9];
+        int valido = 1;
 
-    for(int k = 1; k <= n; ++k){
-        for(int i = 0; i < 9; ++i){
-            for(int j = 0; j < 9; ++j){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 scanf("%d", &sudoku[i][j]);
             }
         }
 
-        printf("Instancia %d\n", k);
-
-        resposta = "SIM";
-        for(int i = 0; i < 9; ++i){
-            if(!verificaLinha(i) || !verificaColuna(i) || !verificaQuadrado(i)){
-                resposta = "NAO";
-                break;
+        for (int i = 0; i < 9; i++) {
+            int frequencia[10] = {0};
+            for (int j = 0; j < 9; j++) {
+                int num = sudoku[i][j];
+                if (num < 1 || num > 9 || frequencia[num] > 0) {
+                    valido = 0;
+                }
+                frequencia[num]++;
             }
         }
 
-        printf("%s\n\n", resposta);
+        for (int j = 0; j < 9; j++) {
+            int frequencia[10] = {0};
+            for (int i = 0; i < 9; i++) {
+                int num = sudoku[i][j];
+                if (num < 1 || num > 9 || frequencia[num] > 0) {
+                    valido = 0;
+                }
+                frequencia[num]++;
+            }
+        }
+
+        for (int bloco_i = 0; bloco_i < 9; bloco_i += 3) {
+            for (int bloco_j = 0; bloco_j < 9; bloco_j += 3) {
+                int frequencia[10] = {0};
+                for (int i = bloco_i; i < bloco_i + 3; i++) {
+                    for (int j = bloco_j; j < bloco_j + 3; j++) {
+                        int num = sudoku[i][j];
+                        if (num < 1 || num > 9 || frequencia[num] > 0) {
+                            valido = 0;
+                        }
+                        frequencia[num]++;
+                    }
+                }
+            }
+        }
+
+        printf("Instancia %d\n", instancia);
+        if (valido == 1) {
+            printf("SIM\n\n");
+        } else {
+            printf("NAO\n\n");
+        }
     }
 
     return 0;
