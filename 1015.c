@@ -8,7 +8,7 @@ Objetivo    : Calcular a distância entre dois pontos no plano cartesiano utiliz
 Aprendizado : Aplicar a fórmula da distância entre dois pontos em C usando variáveis, operações matemáticas e a função sqrt().
 -------------------------------------------------------------------------- */
 
-##include <stdio.h>
+#include <stdio.h>
 #include <math.h>
 
 int main() {
