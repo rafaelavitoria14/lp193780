@@ -1,17 +1,14 @@
-#include <stdio.h>
+#include <iostream>
+#include <vector>
 
 int main() {
     int n;
 
-    while (scanf("%d", &n) == 1 && n != 0) {
+    while (std::cin >> n && n != 0) {
         int m = 1;
 
-        while (1) {
-            int regioes[101];
-            
-            for (int i = 1; i <= n; i++) {
-                regioes[i] = 1;
-            }
+        while (true) {
+            std::vector<int> regioes(n + 1, 1);
 
             regioes[1] = 0;
             int restantes = n - 1;
@@ -37,7 +34,7 @@ int main() {
             }
 
             if (ultima_desligada == 13) {
-                printf("%d\n", m);
+                std::cout << m << "\n";
                 break;
             }
 
@@ -47,3 +44,4 @@ int main() {
 
     return 0;
 }
+
