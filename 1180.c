@@ -4,37 +4,35 @@ Nome        : Rafaela Vitória da Costa
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1180
 Data        : 23/06/2026
-Objetivo    :
-Aprendizado : 
+Objetivo    : Ler um vetor de inteiros, identificar qual é o menor elemento armazenado e descobrir em qual índice (posição) ele se encontra.
+Aprendizado : Praticar a busca linear e estruturas de comparação condicional (if) para encontrar valores mínimos varrendo todas as posições de um vetor sequencialmente.
 -------------------------------------------------------------------------- */
 
 #include <stdio.h>
 
 int main() {
-    int n, i;
-    
-    // Lê o tamanho do vetor
-    if (scanf("%d", &n) != 1) return 0;
-    
-    int x[n];
-    int menor, posicao;
-    
-    // Lê os elementos e acha o menor/posição
-    for (i = 0; i < n; i++) {
-        scanf("%d", &x[i]);
-        
-        if (i == 0) {
-            menor = x[i];
-            posicao = i;
-        } else if (x[i] < menor) {
-            menor = x[i];
-            posicao = i;
+    int n;
+
+    if (scanf("%d", &n) == 1) {
+        int vetor[1005];
+
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &vetor[i]);
         }
+
+        int menor = vetor[0];
+        int posicao = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (vetor[i] < menor) {
+                menor = vetor[i];
+                posicao = i;
+            }
+        }
+
+        printf("Menor valor: %d\n", menor);
+        printf("Posicao: %d\n", posicao);
     }
-    
-    // Exibe o resultado exatamente como formatado no problema
-    printf("Menor valor: %d\n", menor);
-    printf("Posicao: %d\n", posicao);
-    
+
     return 0;
 }
