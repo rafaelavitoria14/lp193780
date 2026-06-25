@@ -4,26 +4,28 @@ Nome        : Rafaela Vitória da Costa
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1030
 Data        : 09/06/2026
-Objetivo    : 
-Aprendizado : 
+Objetivo    : Determinar a posição da última pessoa que sobrevive em uma roda de eliminações circulares com saltos fixos de tamanho k.
+Aprendizado : Utilizar a programação dinâmica iterativa para resolver de forma otimizada o clássico Problema de Josephus sem estourar a memória.
 -------------------------------------------------------------------------- */
 
-#include <iostream>
-
-int sobrevivente(int n, int k) {
-    if (n == 1) return 0;
-    return (sobrevivente(n - 1, k) + k) % n;
-}
+#include <stdio.h>
 
 int main() {
-    int NC, n, k;
+    int nc;
 
-    std::cin >> NC;
+    if (scanf("%d", &nc) == 1) {
+        for (int i = 1; i <= nc; i++) {
+            int n, k;
+            if (scanf("%d %d", &n, &k) == 2) {
+                int sobrevivente = 0;
 
-    for (int i = 1; i <= NC; ++i) {
-        std::cin >> n >> k;
+                for (int j = 1; j <= n; j++) {
+                    sobrevivente = (sobrevivente + k) % j;
+                }
 
-        std::cout << "Case " << i << ": " << sobrevivente(n, k) + 1 << "\n";
+                printf("Case %d: %d\n", i, sobrevivente + 1);
+            }
+        }
     }
 
     return 0;
