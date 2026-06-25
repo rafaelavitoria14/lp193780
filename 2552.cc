@@ -1,3 +1,13 @@
+/* --------------------------------------------------------------------------
+Disciplina  : Lógica de Programação, turma IB, 2026S1
+Nome        : Rafaela Vitória da Costa 
+Linguagem   : C
+Problema    : https://judge.beecrowd.com/pt/problems/view/2552
+Data        : 23/06/2026
+Objetivo    : Modificar uma matriz substituindo as posições com pães de queijo pelo número 9 e as posições vazias pela quantidade de pães de queijo presentes nas células diretamente adjacentes.
+Aprendizado : Manipular matrizes bidimensionais para verificar vizinhanças (cima, baixo, esquerda, direita) controlando os limites dos índices para evitar acessos inválidos na memória.
+-------------------------------------------------------------------------- */
+
 #include <iostream>
 
 int main() {
