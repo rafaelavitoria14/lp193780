@@ -4,36 +4,32 @@ Nome        : Rafaela Vitória da Costa
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1028
 Data        : 16/06/2026
-Objetivo    : 
-Aprendizado : 
+Objetivo    : Encontrar o Maior Divisor Comum (MDC) entre dois números para achar o maior tamanho de pilha igualitária.
+Aprendizado : Usar o Algoritmo de Euclides com um laço while para resolver divisibilidade de forma rápida e eficiente.
 -------------------------------------------------------------------------- */
 
 #include <stdio.h>
 
-void main ()
-{
+int calcular_mdc(int a, int b) {
+    while (b != 0) {
+        int resto = a % b;
+        a = b;
+        b = resto;
+    }
+    return a;
+}
 
-	int ricardo, vicente, resultado = 0;
-	int casos;
+int main() {
+    int n, f1, f2;
 
-	scanf("%ds", &casos);
+    if (scanf("%d", &n) == 1) {
+        for (int i = 0; i < n; i++) {
+            if (scanf("%d %d", &f1, &f2) == 2) {
+                int resultado = calcular_mdc(f1, f2);
+                printf("%d\n", resultado);
+            }
+        }
+    }
 
-	while (casos--)
-	{
-
-		scanf("%d %d", &ricardo, &vicente);
-
-		// MDC simples;
-		while (vicente != 0)
-		{
-
-			resultado = ricardo % vicente;
-			ricardo = vicente;
-			vicente = resultado;
-
-		}
-
-		printf("%d\n", ricardo);
-
-	}
+    return 0;
 }
