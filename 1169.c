@@ -1,32 +1,35 @@
+/* --------------------------------------------------------------------------
+Disciplina  : Lógica de Programação, turma IB, 2026S1
+Nome        : Rafaela Vitória da Costa 
+Linguagem   : C
+Problema    : https://judge.beecrowd.com/pt/problems/view/1169
+Data        : 23/06/2026
+Objetivo    : Calcular a quantidade de quilos de trigo obtidos ao dobrar o número de grãos a cada casa de um tabuleiro de xadrez até a casa X, sabendo que cada 12 grãos equivalem a 1 grama.
+Aprendizado : Compreender a importância do uso de tipos de dados de alta capacidade, como o unsigned long long, para lidar com o crescimento exponencial de valores sem estourar o limite de bits.
+-------------------------------------------------------------------------- */
+
 #include <stdio.h>
+#include <math.h>
 
-unsigned long long int potencia(int base, int expoente)
-{
-    if (expoente == 1)
-        return base;
-    if (expoente % 2)
-        return base * potencia(base, expoente - 1);
+int main() {
+    int n, x;
 
-    unsigned long long int p = potencia(base, expoente / 2);
-    return p * p;
-}
+    if (scanf("%d", &n) == 1) {
+        for (int i = 0; i < n; i++) {
+            if (scanf("%d", &x) == 1) {
+                unsigned long long graos = 0;
 
-unsigned long long int somaPG(int a0, int q, int n)
-{
-    return a0 * (potencia(q, n) - 1) / (q - 1);
-}
+                if (x == 64) {
+                    graos = 18446744073709551615ULL;
+                } else {
+                    graos = (unsigned long long)pow(2, x) - 1;
+                }
 
-int main()
-{
-    int N, X;
+                unsigned long long kg = (graos / 12) / 1000;
 
-    scanf("%d", &N);
-
-    for (int i = 0; i < N; ++i)
-    {
-        scanf("%d", &X);
-
-        printf("%llu kg\n", somaPG(1, 2, X) / 12000);
+                printf("%llu kg\n", kg);
+            }
+        }
     }
 
     return 0;
