@@ -9,34 +9,34 @@ Aprendizado : Utilizar switch para associar diferentes valores a cada caractere 
 -------------------------------------------------------------------------- */
 
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    int n, leds;
-    char numero[101];
+    int n;
 
-    scanf("%d", &n);
+    if (scanf("%d", &n) == 1) {
+        for (int i = 0; i < n; i++) {
+            char numero[105];
+            scanf("%s", numero);
 
-    for (int i = 0; i < n; i++) {
-        scanf("%s", numero);
+            int total_leds = 0;
+            int tamanho = strlen(numero);
 
-        leds = 0;
-
-        for (int j = 0; numero[j] != '\0'; j++) {
-            switch (numero[j]) {
-                case '0': leds += 6; break;
-                case '1': leds += 2; break;
-                case '2': leds += 5; break;
-                case '3': leds += 5; break;
-                case '4': leds += 4; break;
-                case '5': leds += 5; break;
-                case '6': leds += 6; break;
-                case '7': leds += 3; break;
-                case '8': leds += 7; break;
-                case '9': leds += 6; break;
+            for (int j = 0; j < tamanho; j++) {
+                if (numero[j] == '1') total_leds += 2;
+                else if (numero[j] == '2') total_leds += 5;
+                else if (numero[j] == '3') total_leds += 5;
+                else if (numero[j] == '4') total_leds += 4;
+                else if (numero[j] == '5') total_leds += 5;
+                else if (numero[j] == '6') total_leds += 6;
+                else if (numero[j] == '7') total_leds += 3;
+                else if (numero[j] == '8') total_leds += 7;
+                else if (numero[j] == '9') total_leds += 6;
+                else if (numero[j] == '0') total_leds += 6;
             }
-        }
 
-        printf("%d leds\n", leds);
+            printf("%d leds\n", total_leds);
+        }
     }
 
     return 0;
