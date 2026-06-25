@@ -4,62 +4,66 @@ Nome        : Rafaela Vitória da Costa
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1258
 Data        : 16/06/2026
-Objetivo    : 
-Aprendizado : 
+Objetivo    : Ordenar uma lista de pedidos de camisetas de uma turma com base em três critérios prioritários de ordenação: cor dos detalhes (ascendente), tamanho da peça (descendente) e o nome do aluno (alfabético ascendente).
+Aprendizado : Utilizar estruturas de dados personalizados (struct) combinadas com algoritmos de ordenação por bolha (Bubble Sort) aplicados a strings e caracteres sob múltiplas condições lógicas.
 -------------------------------------------------------------------------- */
 
-#include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
-struct Camiseta
-{
-    char nome[100], cor[10], tamanho[10];
+struct Camiseta {
+    char nome[100];
+    char cor[20];
+    char tamanho;
 };
 
-int comp(const void *a, const void *b)
-{
-    struct Camiseta *cA = (struct Camiseta *)a;
-    struct Camiseta *cB = (struct Camiseta *)b;
+int main() {
+    int n;
+    int primeiro = 1;
 
-    if (strcmp(cA->cor, cB->cor) == 0)
-    {
-        if (strcmp(cA->tamanho, cB->tamanho) == 0)
-        {
-            return strcmp(cA->nome, cB->nome);
+    while (scanf("%d", &n) == 1 && n != 0) {
+        struct Camiseta lista[65];
+
+        for (int i = 0; i < n; i++) {
+            char lixo;
+            scanf("%c", &lixo);
+            fgets(lista[i].nome, 100, stdin);
+            lista[i].nome[strcspn(lista[i].nome, "\n")] = '\0';
+            scanf("%s %c", lista[i].cor, &lista[i].tamanho);
         }
-        return -strcmp(cA->tamanho, cB->tamanho);
-    }
-    return strcmp(cA->cor, cB->cor);
-}
 
-int main()
-{
-    int N, first;
-    struct Camiseta camisetas[60];
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                int trocar = 0;
+                int comp_cor = strcmp(lista[j].cor, lista[j + 1].cor);
 
-    first = 1;
-    while (scanf("%d\n", &N))
-    {
-        if (!N)
-            break;
+                if (comp_cor > 0) {
+                    trocar = 1;
+                } else if (comp_cor == 0) {
+                    if (lista[j].tamanho < lista[j + 1].tamanho) {
+                        trocar = 1;
+                    } else if (lista[j].tamanho == lista[j + 1].tamanho) {
+                        if (strcmp(lista[j].nome, lista[j + 1].nome) > 0) {
+                            trocar = 1;
+                        }
+                    }
+                }
 
-        if (first)
-            first = 0;
-        else
+                if (trocar == 1) {
+                    struct Camiseta aux = lista[j];
+                    lista[j] = lista[j + 1];
+                    lista[j + 1] = aux;
+                }
+            }
+        }
+
+        if (primeiro == 0) {
             printf("\n");
-
-        for (int i = 0; i < N; ++i)
-        {
-            scanf("%[^\n]\n", &(camisetas[i].nome));
-            scanf("%s %s\n", &(camisetas[i].cor), &(camisetas[i].tamanho));
         }
+        primeiro = 0;
 
-        qsort(camisetas, N, sizeof(struct Camiseta), comp);
-
-        for (int i = 0; i < N; ++i)
-        {
-            printf("%s %s %s\n", camisetas[i].cor, camisetas[i].tamanho, camisetas[i].nome);
+        for (int i = 0; i < n; i++) {
+            printf("%s %c %s\n", lista[i].cor, lista[i].tamanho, lista[i].nome);
         }
     }
 
