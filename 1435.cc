@@ -1,3 +1,13 @@
+/* --------------------------------------------------------------------------
+Disciplina  : Lógica de Programação, turma IB, 2026S1
+Nome        : Rafaela Vitória da Costa 
+Linguagem   : C
+Problema    : https://judge.beecrowd.com/pt/problems/view/1435
+Data        : 23/06/2026
+Objetivo    : Construir e exibir uma matriz quadrada de ordem N cujos elementos formam camadas concêntricas com valores numéricos crescentes (começando em 1) da borda em direção ao centro.
+Aprendizado : Compreender como calcular o valor de cada posição de uma matriz com base na menor distância até uma de suas quatro bordas, utilizando uma lógica matemática direta com funções de mínimo.
+-------------------------------------------------------------------------- */
+
 #include <iostream>
 #include <iomanip>
 
