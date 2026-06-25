@@ -1,3 +1,13 @@
+/* --------------------------------------------------------------------------
+Disciplina  : Lógica de Programação, turma IB, 2026S1
+Nome        : Rafaela Vitória da Costa 
+Linguagem   : C
+Problema    : https://judge.beecrowd.com/pt/problems/view/1031
+Data        : 23/06/2026
+Objetivo    : Encontrar o menor tamanho de salto em um processo de eliminação circular para garantir que a região 13 (Wellington) seja a última a ter a energia desligada.
+Aprendizado : Modelar e simular problemas clássicos de filas circulares utilizando vetores dinâmicos e laços de repetição baseados em estados lógicos.
+-------------------------------------------------------------------------- */
+
 #include <iostream>
 #include <vector>
 
