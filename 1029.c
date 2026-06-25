@@ -4,43 +4,32 @@ Nome        : Rafaela Vitória da Costa
 Linguagem   : C
 Problema    : https://judge.beecrowd.com/pt/problems/view/1029
 Data        : 16/06/2026
-Objetivo    : 
-Aprendizado : 
+Objetivo    : Calcular o valor de um termo na sequência de Fibonacci e contar quantas chamadas recursivas foram feitas para encontrar esse resultado.
+Aprendizado : Entender o comportamento de funções recursivas e como criar uma variável global para rastrear a árvore de execução do algoritmo.
 -------------------------------------------------------------------------- */
 
 #include <stdio.h>
 
-int F[40], CF[40];
+int chamadas;
 
-void calcula(int n){
-    if(F[n] == -1){
-        calcula(n - 1);
-        calcula(n - 2);
-
-        F[n] = F[n - 1] + F[n - 2];
-        CF[n] = CF[n - 1] + CF[n - 2] + 1;
-    }
+int fibonacci(int n) {
+    chamadas++;
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-int main(){
-    int N, X;
+int main() {
+    int n, x;
 
-    F[0] = 0;
-    F[1] = 1;
-
-    CF[0] = 1;
-    CF[1] = 1;
-
-    for(int i = 2; i < 40; ++i){
-        F[i] = -1;
-        CF[i] = -1;
-    }
-
-    scanf("%d", &N);
-    for(int i = 0; i < N; ++i){
-        scanf("%d", &X);
-        calcula(X);
-        printf("fib(%d) = %d calls = %d\n", X, CF[X] - 1, F[X]);
+    if (scanf("%d", &n) == 1) {
+        for (int i = 0; i < n; i++) {
+            if (scanf("%d", &x) == 1) {
+                chamadas = 0;
+                int resultado = fibonacci(x);
+                printf("fib(%d) = %d calls = %d\n", x, chamadas - 1, resultado);
+            }
+        }
     }
 
     return 0;
